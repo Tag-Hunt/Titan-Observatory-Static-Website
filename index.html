@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Titan Astronomical Observatory</title>
+  <title>Titan Observatory Initiative</title>
   <style>
     :root {
       --primary-color: #0a1a2f;
       --accent-color: #1a73e8;
       --text-color: #f0f0f0;
       --bg-color: #000814;
+      --surface-color: rgba(13, 30, 53, 0.85);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -41,8 +46,9 @@
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--accent-color);
+      letter-spacing: 0.08rem;
     }
 
     nav ul {
@@ -58,6 +64,7 @@
       color: var(--text-color);
       text-decoration: none;
       transition: color 0.3s;
+      font-size: 0.95rem;
     }
 
     nav ul li a:hover {
@@ -65,7 +72,7 @@
     }
 
     .hero {
-      background: url('assets/images/ai_hero.png') center center / cover no-repeat;
+      background: linear-gradient(rgba(0, 8, 20, 0.6), rgba(0, 8, 20, 0.6)), url('assets/images/ai_hero.png') center center / cover no-repeat;
       height: 85vh;
       display: flex;
       justify-content: center;
@@ -73,25 +80,77 @@
       text-align: center;
       color: white;
       margin-top: 70px;
+      padding: 2rem;
     }
 
     .hero-content {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 700px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 2.5rem;
+      border-radius: 12px;
+      max-width: 760px;
     }
 
     .hero-content h2 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.3rem;
+      font-size: 0.8rem;
+      color: #d0dcff;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      border: 1px solid transparent;
+    }
+
+    .cta.primary {
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+
+    .cta.primary:hover {
+      background-color: #155ab6;
+      transform: translateY(-2px);
+    }
+
+    .cta.secondary {
+      background-color: transparent;
+      border-color: var(--accent-color);
+      color: var(--text-color);
+    }
+
+    .cta.secondary:hover {
+      background-color: rgba(26, 115, 232, 0.1);
+      transform: translateY(-2px);
     }
 
     .section {
       padding: 4rem 2rem;
-      text-align: center;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
+      text-align: center;
     }
 
     .section h2 {
@@ -100,84 +159,210 @@
       margin-bottom: 1rem;
     }
 
+    .section p {
+      margin-bottom: 1.5rem;
+      color: #d6def5;
+    }
+
+    .section-alt {
+      background-color: rgba(10, 26, 47, 0.7);
+    }
+
+    .section-with-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-with-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(0, 8, 20, 0.92), rgba(10, 26, 47, 0.92)),
+        url('assets/images/BottomUpView.jpg') center / cover no-repeat;
+      opacity: 0.6;
+      transform: scale(1.05);
+      z-index: 0;
+    }
+
+    .section-with-image > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: var(--surface-color);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(5, 10, 25, 0.35);
+    }
+
+    .card h3 {
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: #c7d2f8;
+      font-size: 0.95rem;
+    }
+
+    .steps-list {
+      list-style: none;
+      max-width: 720px;
+      margin: 2rem auto 0;
+      text-align: left;
+    }
+
+    .steps-list li {
+      background-color: rgba(13, 30, 53, 0.85);
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--accent-color);
+    }
+
+    .steps-list li strong {
+      color: #ffffff;
+    }
+
     form {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      max-width: 500px;
-      margin: 0 auto;
+      max-width: 520px;
+      margin: 2rem auto 0;
     }
 
-    input, textarea, button {
-      padding: 0.75rem;
+    input,
+    textarea,
+    button {
+      padding: 0.85rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       font-size: 1rem;
     }
 
-    input, textarea {
+    input,
+    textarea {
       background-color: #111827;
       color: var(--text-color);
+      border: 1px solid rgba(90, 105, 140, 0.6);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
     }
 
     button {
       background-color: var(--accent-color);
       color: #fff;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     button:hover {
       background-color: #155ab6;
+      transform: translateY(-2px);
+    }
+
+    .contact-info {
+      margin-top: 1rem;
+      color: #bdc7e6;
+      font-size: 0.95rem;
     }
 
     footer {
       background-color: var(--primary-color);
       text-align: center;
-      padding: 1rem;
-      color: #ccc;
+      padding: 1.25rem;
+      color: #a2accf;
       font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: rgba(10, 26, 47, 0.95);
-        width: 200px;
-        display: none;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      nav ul li {
-        margin: 1rem 0;
-        text-align: center;
-      }
-      .menu-toggle {
-        display: block;
-        cursor: pointer;
-      }
+    footer a {
+      color: #d6def5;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     .menu-toggle {
       display: none;
-      font-size: 1.5rem;
+      font-size: 1rem;
       color: var(--text-color);
+      cursor: pointer;
+      border: 1px solid rgba(214, 222, 245, 0.3);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 900px) {
+      header h1 {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: relative;
+      }
+
+      nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: rgba(10, 26, 47, 0.97);
+        width: 220px;
+        display: none;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 0.75rem 0;
+        text-align: left;
+      }
+
+      .menu-toggle {
+        display: inline-block;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Titan Observatory</h1>
-    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    <h1>Titan Observatory Initiative</h1>
+    <span class="menu-toggle" onclick="toggleMenu()">Menu</span>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#plan">Our Plan</a></li>
+        <li><a href="#steps">Next Steps</a></li>
         <li><a href="#get-involved">Get Involved</a></li>
+        <li><a href="#community">Community</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -185,34 +370,89 @@
 
   <section id="home" class="hero">
     <div class="hero-content">
-      <h2>Doing this and doing that</h2>
-      <p>Titan Astronomical Observatory is dedicated to something.</p>
+      <p class="eyebrow">Community-powered space science</p>
+      <h2>Help Us Rescue a Historic NASA Radio Telescope</h2>
+      <p>We're raising the funds and team needed to acquire a retired NASA radio telescope, relocate it to a new home, and reopen it so anyone can book time, collect deep-space data, and share discoveries with the world.</p>
+      <div class="cta-buttons">
+        <a class="cta primary" href="#plan">See the mission roadmap</a>
+        <a class="cta secondary" href="#community">Join the discussion</a>
+      </div>
     </div>
   </section>
 
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>We are a nonprofit organization blah blah blah blah blah blah blah blah blah blah blah blah</p>
+  <section id="plan" class="section section-with-image">
+    <h2>Our Mission Plan</h2>
+    <p>We are building Titan Observatory as a nonprofit, community telescope dedicated to open science. Every dollar we raise moves this instrument from retirement back to discovery and puts powerful tools into the hands of students, researchers, and curious explorers everywhere.</p>
+    <div class="card-grid">
+      <article class="card">
+        <h3>1. Secure the Telescope</h3>
+        <p>Finalize the purchase of the retired NASA radio dish, complete due diligence, and document its current condition with the help of engineers and historians.</p>
+      </article>
+      <article class="card">
+        <h3>2. Relocate and Restore</h3>
+        <p>Transport the telescope to a dark-sky site, rebuild critical systems, and outfit the facility with modern receivers and control hardware.</p>
+      </article>
+      <article class="card">
+        <h3>3. Build the Community Program</h3>
+        <p>Create an online reservation system, publish training resources, and schedule open office hours so anyone can learn how to use Titan efficiently.</p>
+      </article>
+      <article class="card">
+        <h3>4. Deliver Open Data</h3>
+        <p>Automate data pipelines so observations are processed, archived, and delivered to observers with reproducible documentation and support.</p>
+      </article>
+    </div>
   </section>
 
-  <section id="get-involved" class="section">
-    <h2>Get Involved</h2>
-    <p>Are you a local and blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
-    <button>Donate</button>
+  <section id="steps" class="section section-alt">
+    <h2>What Happens Next</h2>
+    <p>We are moving fast, and you can track the next milestones below. Progress updates land in Discord first, followed by our newsletter.</p>
+    <ul class="steps-list">
+      <li><strong>Finalize acquisition logistics:</strong> lock in funding commitments, inspection dates, and agreements with the current owner.</li>
+      <li><strong>Select relocation site:</strong> confirm zoning, power, and fiber access at candidate locations and begin the permitting process.</li>
+      <li><strong>Design restoration plan:</strong> scope mechanical and electrical upgrades, budget the work, and recruit specialist volunteers.</li>
+      <li><strong>Launch early-access program:</strong> invite educators, researchers, and citizen scientists to help define the first observing campaigns.</li>
+    </ul>
+  </section>
+
+  <section id="get-involved" class="section section-with-image">
+    <h2>How You Can Help</h2>
+    <p>This is a community observatory from day one. Whether you can contribute funds, skills, or time, there is a place for you on the Titan team.</p>
+    <div class="card-grid">
+      <article class="card">
+        <h3>Donate to the Rescue Fund</h3>
+        <p>We are raising capital for acquisition and transport. Early donors help secure matching grants and sponsorships. Reach out to be part of the founding circle.</p>
+      </article>
+      <article class="card">
+        <h3>Volunteer Your Expertise</h3>
+        <p>We are looking for engineers, astronomers, software builders, educators, and storytellers. Tell us how you want to help and we will plug you in.</p>
+      </article>
+      <article class="card">
+        <h3>Share the Mission</h3>
+        <p>Introduce Titan Observatory to your network, classrooms, or local makerspace. The more people who know, the faster we reach orbit.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="community" class="section section-alt">
+    <h2>Join the Community</h2>
+    <p>The Titan Astronomical Observatory Discord is where volunteers coordinate, we share telescope updates, and you can ask questions live. It's the best place to get involved early.</p>
+    <a class="cta primary" href="https://discord.gg/EtDTHGPPeY" target="_blank" rel="noopener">Join our Discord</a>
   </section>
 
   <section id="contact" class="section">
     <h2>Contact Us</h2>
+    <p>Need more details before you jump in? Send us a note and the team will follow up within two business days.</p>
     <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="4" placeholder="How would you like to contribute?" required></textarea>
       <button type="submit">Send Message</button>
     </form>
+    <p class="contact-info">Prefer email? Write to <a href="mailto:contact@titanobservatory.org">contact@titanobservatory.org</a>.</p>
   </section>
 
   <footer>
-    <p>© <span id="year"></span> Titan Astronomical Observatory. All rights reserved. (can I just say that or is there like a legal thing that is involved in that or what)</p>
+    <p>&copy; <span id="year"></span> Titan Observatory Initiative. Built for open, community-driven space research.</p>
   </footer>
 
   <script>
