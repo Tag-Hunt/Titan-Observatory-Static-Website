@@ -70,10 +70,13 @@
     nav ul {
       display: flex;
       list-style: none;
+      align-items: center;
     }
 
     nav ul li {
       margin-left: 1.5rem;
+      display: flex;
+      align-items: center;
     }
 
     nav ul li a {
@@ -85,6 +88,15 @@
 
     nav ul li a:hover {
       color: var(--accent-color);
+    }
+
+    nav ul li.donate-link {
+      margin-left: 2rem;
+    }
+
+    nav ul li.donate-link .cta {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.9rem;
     }
 
     .hero {
@@ -99,6 +111,7 @@
       margin-top: 70px;
       padding: 2rem;
       gap: 1.5rem;
+      scroll-margin-top: 90px;
     }
 
     .hero-logo {
@@ -179,6 +192,7 @@
       max-width: 1100px;
       margin: 0 auto;
       text-align: center;
+      scroll-margin-top: 90px;
     }
 
     .section h2 {
@@ -194,6 +208,16 @@
 
     .section-alt {
       background-color: rgba(10, 26, 47, 0.7);
+    }
+
+    .section-donations {
+      background: linear-gradient(135deg, rgba(26, 115, 232, 0.25), rgba(10, 26, 47, 0.92));
+      border: 1px solid rgba(26, 115, 232, 0.35);
+      box-shadow: 0 20px 45px rgba(10, 26, 47, 0.55);
+    }
+
+    .section-donations p {
+      color: #e3eafc;
     }
 
     .section-with-image {
@@ -330,6 +354,7 @@
         padding: 1.5rem;
         border-radius: 8px;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        align-items: flex-start;
       }
 
       nav ul.active {
@@ -339,6 +364,15 @@
       nav ul li {
         margin: 0.75rem 0;
         text-align: left;
+      }
+
+      nav ul li.donate-link {
+        margin: 0.75rem 0;
+      }
+
+      nav ul li.donate-link .cta {
+        width: 100%;
+        text-align: center;
       }
 
       .branding img {
@@ -358,7 +392,7 @@
 <body>
   <header>
     <div class="branding">
-      <img src="assets/icons/tao-logo.png" alt="Titan Observatory logo" />
+      <img src="assets/icons/tao-logo.png" alt="Titan Astronomical Observatory logo" />
       <h1>Titan Astronomical Observatory</h1>
     </div>
     <span class="menu-toggle" onclick="toggleMenu()">Menu</span>
@@ -366,16 +400,18 @@
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#plan">Our Plan</a></li>
+        <li><a href="#donations">Donations</a></li>
         <li><a href="#steps">Next Steps</a></li>
         <li><a href="#get-involved">Get Involved</a></li>
         <li><a href="#volunteer">Volunteer</a></li>
         <li><a href="#community">Community</a></li>
+        <li class="donate-link"><a class="cta primary" href="https://www.gofundme.com/f/help-build-titan-observatory-for-student-science" target="_blank" rel="noopener">Contribute on GoFundMe</a></li>
       </ul>
     </nav>
   </header>
 
   <section id="home" class="hero">
-    <img class="hero-logo" src="assets/icons/tao-logo.png" alt="Titan Observatory logo" />
+    <img class="hero-logo" src="assets/icons/tao-logo.png" alt="Titan Astronomical Observatory logo" />
     <div class="hero-content">
       <p class="eyebrow">Community-powered space science</p>
       <h2>Help Us Rescue a Historic NASA Radio Telescope</h2>
@@ -389,7 +425,7 @@
 
   <section id="plan" class="section section-with-image">
     <h2>Our Mission Plan</h2>
-    <p>We are building Titan Observatory as a nonprofit, community telescope dedicated to open science. Every dollar we raise moves this instrument from retirement back to discovery and puts powerful tools into the hands of students, researchers, and curious explorers everywhere.</p>
+    <p>We are building Titan Astronomical Observatory as a nonprofit, community telescope dedicated to open science. Every dollar we raise moves this instrument from retirement back to discovery and puts powerful tools into the hands of students, researchers, and curious explorers everywhere.</p>
     <div class="card-grid">
       <article class="card">
         <h3>1. Preparation &amp; Greenlight</h3>
@@ -407,6 +443,15 @@
         <h3>4. Operations &amp; Maintenance</h3>
         <p>Open Titan for public use. Ensure constant operations and regular maintenance.</p>
       </article>
+    </div>
+  </section>
+
+  <section id="donations" class="section section-donations">
+    <h2>Support Titan Astronomical Observatory</h2>
+    <p>Every donation accelerates the relocation and reoutfitting of the telescope for student and community science.</p>
+    <div class="cta-buttons">
+      <a class="cta primary" href="https://www.gofundme.com/f/help-build-titan-observatory-for-student-science" target="_blank" rel="noopener">Contribute on GoFundMe</a>
+      <a class="cta secondary" href="#get-involved">Explore more ways to help</a>
     </div>
   </section>
 
@@ -435,13 +480,13 @@
       </article>
       <article class="card">
         <h3>Share the Mission</h3>
-        <p>Introduce Titan Observatory to your network, classrooms, or local makerspace. The more people who know, the faster we reach orbit.</p>
+        <p>Introduce Titan Astronomical Observatory to your network, classrooms, or local makerspace. The more people who know, the faster we reach orbit.</p>
       </article>
     </div>
   </section>
 
   <section id="volunteer" class="section">
-    <h2>Volunteer with Titan Observatory</h2>
+    <h2>Volunteer with Us</h2>
     <div class="volunteer-details">
       <p>Hands-on restoration work and remote roles are both open. We're especially looking for people who can keep our RF systems quiet and our software running smoothly.</p>
       <ul>
